@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 public class PreTiempoTranscurridoFilter extends ZuulFilter {
 
-    private static Logger log = LoggerFactory.getLogger(PreTiempoTranscurridoFilter.class);
+    private static final Logger log = LoggerFactory.getLogger(PreTiempoTranscurridoFilter.class);
 
     /***
      * Definimos el tipo de filtro
