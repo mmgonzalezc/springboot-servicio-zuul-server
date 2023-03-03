@@ -19,6 +19,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Arrays;
+import java.util.Base64;
+
 /***
  * RefreshScope Anotacion que nos permite actualizar en tiempo real mediante una url de spring actuator los
  * componentes, controlodores, clases anotados con component, service , controllers
@@ -124,7 +126,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
      */
     public JwtAccessTokenConverter accessTokenConverter() {
         JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
-        tokenConverter.setSigningKey(jwtKey);// Asigna llave secreta
+        // Codificacmos llave en base 64 para que sea mas robusta y sea conpatible con el metodo authenticate en zuul
+        tokenConverter.setSigningKey(Base64.getEncoder().encodeToString(jwtKey.getBytes()));// Asigna llave secreta
         return tokenConverter;
     }
 }
